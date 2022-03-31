@@ -1,0 +1,13 @@
+.trash-content {
+    margin: 0 5px;
+    padding-top: 3.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .trash {
+    margin: 1rem 1rem 1rem 11%;
+    width: 100%;
+    background-color: white;
+    color: var(--secondary-color);
+  }
