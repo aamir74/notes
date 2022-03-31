@@ -1,10 +1,11 @@
 import React from "react";
 import HtmlParser from "react-html-parser/lib/HtmlParser";
-import { useNotes } from "../../hooks";
+import { useFilter, useNotes } from "../../hooks";
 import {
   addToArchive,
   deleteFromArchive,
   removeFromArchive,
+  updateNote,
 } from "../../services";
 
 const NotesCard = ({
@@ -16,8 +17,10 @@ const NotesCard = ({
   color,
   setFormData,
   note,
+  pinned,
 }) => {
   const { notesState, notesDispatch } = useNotes();
+  const { filterState, filterDispatch } = useFilter();
 
   const handleAddToArchive = async (note) => {
     const res = await addToArchive(note._id, note);
@@ -57,11 +60,25 @@ const NotesCard = ({
     console.log("sss", notesState);
   };
 
+  const handlePinNote = async (note) => {
+    const res = await updateNote(note._id, { ...note, pinned: !pinned });
+    console.log(res);
+    if (res.status === 201) {
+      notesDispatch({ type: "UPDATE_NOTES", payload: res.data.notes });
+      filterDispatch({ type: "PINNED" });
+    }
+  };
+
   return (
     <div class="card text-card" style={{ backgroundColor: color }}>
       <div className="notes-title">
         <p className="h7 bold">{title}</p>
-        <i class="fa fa-thumb-tack fa-md" aria-hidden="true"></i>
+        <i
+          class="fa fa-thumb-tack fa-md"
+          aria-hidden="true"
+          style={pinned ? { color: "#4caf50" } : { color: "#353b47" }}
+          onClick={() => handlePinNote(note)}
+        ></i>
       </div>
       <div className="notes-title">{HtmlParser(content)}</div>
       <div className="notes-title footer">

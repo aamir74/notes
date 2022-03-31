@@ -1,19 +1,35 @@
 import React from "react";
 import { NotesCard } from "../../../customComponents/Card/NotesCard";
-import { useNotes } from "../../../hooks";
+import { useFilter, useNotes } from "../../../hooks";
 
-const Notes = ({ formData, setFormData }) => {
+const Notes = ({ formData, setFormData,notes }) => {
   const a = (
     <h2>
       <u>Solve Bugs</u>
     </h2>
   );
-  const { notesState, notesDispatch } = useNotes();
-  const { notes } = notesState;
-
+  const { filterState, filterDispatch } = useFilter();
   return (
     <div className="notes">
-      <p className="h6 bold">Pinned</p>
+      <div className="note-head">
+        <p className="h6 bold">Pinned</p>
+        <span className="note-head">
+          <p className="h6 bold">Sort By Date</p>
+          <button
+            class="btn-text fab-bg-color"
+            onClick={() => filterDispatch({ type: "ASC" })}
+          >
+            Asc
+          </button>
+          <button
+            class="btn-text fab-bg-color"
+            onClick={() => filterDispatch({ type: "DESC" })}
+          >
+            Desc
+          </button>
+        </span>
+      </div>
+
       {notes && notes.length ? (
         notes.map((item) => (
           <NotesCard
@@ -24,6 +40,7 @@ const Notes = ({ formData, setFormData }) => {
             content={item.content}
             date={item.date}
             color={item.color}
+            pinned={item.pinned}
             setFormData={setFormData}
             note={item}
           />

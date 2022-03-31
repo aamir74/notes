@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import { NotesProvider } from "./hooks";
+import { FilterProvider, NotesProvider } from "./hooks";
 
 // Call make Server
 makeServer();
@@ -11,7 +11,9 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <NotesProvider>
-      <App />
+      <FilterProvider>
+        <App />
+      </FilterProvider>
     </NotesProvider>
   </React.StrictMode>,
   document.getElementById("root")

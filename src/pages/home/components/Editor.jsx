@@ -12,10 +12,9 @@ const Editor = ({ formData, setFormData, initialFormData }) => {
     try {
       const date = new Date().toLocaleString();
       let title = formData.title;
-      title =
-        title === "<p><br></p>" || !title.length ? "<p>My Note</p>" : title;
+      title = title ? title : "My Note";
 
-      const note = { ...formData, date, title };
+      const note = { ...formData, date, title, pinned: false };
       if (formData.type === "edit") {
         res = await updateNote(formData.id, note);
         if (res.status === 201)

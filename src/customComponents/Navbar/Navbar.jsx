@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useFilter } from "../../hooks";
 
 import "./Navbar.css";
 const Navbar = () => {
+  const { fiiterState, filterDispatch } = useFilter();
   return (
     <nav className="p-nav">
       {/* <Link to="/"> */}
@@ -16,7 +18,10 @@ const Navbar = () => {
           id="searchbar"
           className="textbox"
           type="email"
-          placeholder="Search"
+          placeholder="Search By Title"
+          onChange={(e) =>
+            filterDispatch({ type: "SEARCH", search: e.target.value })
+          }
         />
       </div>
     </nav>
