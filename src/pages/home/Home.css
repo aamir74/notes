@@ -1,0 +1,102 @@
+.home-content {
+  margin: 0 5px;
+  padding-top: 3.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.sidebar {
+  position: fixed;
+  height: fit-content;
+  background-color: var(--white);
+  width: 10%;
+  color: var(--primary-color);
+  max-width: 200px;
+  min-width: 100px;
+}
+
+.sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 1rem 0 0;
+}
+
+.side-head {
+  cursor: pointer;
+  margin: 1.5rem 1rem;
+  width: 80%;
+}
+
+.side-head input {
+  margin: 0.5rem;
+}
+
+.notes {
+  margin: 1rem 1rem 1rem 11%;
+  width: 100%;
+  background-color: white;
+  color: var(--secondary-color);
+}
+
+.editor {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 1rem;
+  width: 100%;
+  background-color: white;
+  padding: 1rem;
+}
+
+.notes-title {
+  color: var(--secondary-color);
+  padding: 1rem;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px #ebebeb;
+}
+.footer {
+  padding: 2px;
+}
+.options {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.options > * {
+  margin: 0 0.5rem;
+}
+i {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.quill-editor {
+  width: 100%;
+  margin: 1rem;
+}
+.color {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+}
+.color > * {
+  margin: 0.5rem;
+}
+.letter-avatar {
+  background-color: red;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+  /* padding: 4px 12px; */
+}
+@media only screen and (max-width: 950px) {
+  .notes {
+    margin: 1rem 1rem 1rem 120px;
+  }
+}

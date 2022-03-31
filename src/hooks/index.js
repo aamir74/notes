@@ -1,0 +1,1 @@
+export { NotesProvider, useNotes } from "./context/notes-context";
