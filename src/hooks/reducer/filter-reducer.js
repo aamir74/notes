@@ -1,5 +1,4 @@
 const filterReducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "ASC":
       return { ...state, sortBy: action.type };

@@ -1,5 +1,4 @@
 const pinFilter = (notes) => {
-  console.log(notes)
   if (notes && notes.length) {
     const pinned = [];
     const unpinned = [];

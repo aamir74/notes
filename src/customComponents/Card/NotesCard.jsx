@@ -1,6 +1,7 @@
 import React from "react";
 import HtmlParser from "react-html-parser/lib/HtmlParser";
-import { useFilter, useNotes } from "../../hooks";
+import { useNotifications } from "reapop";
+import { useAuth, useFilter, useNotes } from "../../hooks";
 import {
   addToArchive,
   deleteFromArchive,
@@ -19,50 +20,122 @@ const NotesCard = ({
   note,
   pinned,
 }) => {
+  const { notify } = useNotifications();
   const { notesState, notesDispatch } = useNotes();
   const { filterState, filterDispatch } = useFilter();
+  const { authState, authDispatch } = useAuth();
+  const token = authState.auth;
 
   const handleAddToArchive = async (note) => {
-    const res = await addToArchive(note._id, note);
-    if (res.status === 201)
-      notesDispatch({
-        type: "HANDLE_ARCHIVE",
-        payload: {
-          notes: res.data.notes,
-          archives: res.data.archives,
-        },
+    try {
+      if (!token) throw { message: "User not loggeg in" };
+      const res = await addToArchive(note._id, note);
+      if (res.status === 201) {
+        notesDispatch({
+          type: "HANDLE_ARCHIVE",
+          payload: {
+            notes: res.data.notes,
+            archives: res.data.archives,
+          },
+        });
+        notify({
+          title: <h3> Success :)</h3>,
+          message: <h5>Note added to archive</h5>,
+          status: "success",
+          dismissible: true,
+          dismissAfter: 5000,
+          showDismissButton: true,
+          position: "bottom-left",
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      notify({
+        title: <h3>Error Occured</h3>,
+        message: <h5>Please Login to add to archive</h5>,
+        status: "error",
+        dismissible: true,
+        dismissAfter: 5000,
+        showDismissButton: true,
+        position: "bottom-left",
       });
+    }
   };
 
   const handleRemoveFromArchive = async (note) => {
-    const res = await removeFromArchive(note._id, note);
-    if (res.status === 200)
-      notesDispatch({
-        type: "HANDLE_ARCHIVE",
-        payload: {
-          notes: res.data.notes,
-          archives: res.data.archives,
-        },
+    try {
+      if (!token) throw { message: "User not loggeg in" };
+      const res = await removeFromArchive(note._id, note);
+      if (res.status === 200) {
+        notesDispatch({
+          type: "HANDLE_ARCHIVE",
+          payload: {
+            notes: res.data.notes,
+            archives: res.data.archives,
+          },
+        });
+        notify({
+          title: <h3> Success :)</h3>,
+          message: <h5>Note removed from archive</h5>,
+          status: "success",
+          dismissible: true,
+          dismissAfter: 5000,
+          showDismissButton: true,
+          position: "bottom-left",
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      notify({
+        title: <h3>Error Occured</h3>,
+        message: <h5>Please Login to remove from archive</h5>,
+        status: "error",
+        dismissible: true,
+        dismissAfter: 5000,
+        showDismissButton: true,
+        position: "bottom-left",
       });
+    }
   };
 
   const handleMoveToTrash = async (note) => {
-    const res = await deleteFromArchive(note._id);
-    console.log("removee", res);
-    if (res.status === 200)
-      notesDispatch({
-        type: "HANDLE_TRASH",
-        payload: {
-          trash: note,
-          archives: res.data.archives,
-        },
+    try {
+      if (!token) throw { message: "User not loggeg in" };
+      const res = await deleteFromArchive(note._id);
+      if (res.status === 200) {
+        notesDispatch({
+          type: "HANDLE_TRASH",
+          payload: {
+            trash: note,
+            archives: res.data.archives,
+          },
+        });
+        notify({
+          title: <h3> Success :)</h3>,
+          message: <h5>Note moved to trash</h5>,
+          status: "success",
+          dismissible: true,
+          dismissAfter: 5000,
+          showDismissButton: true,
+          position: "bottom-left",
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      notify({
+        title: <h3>Error Occured</h3>,
+        message: <h5>Please Login to move to trash</h5>,
+        status: "error",
+        dismissible: true,
+        dismissAfter: 5000,
+        showDismissButton: true,
+        position: "bottom-left",
       });
-    console.log("sss", notesState);
+    }
   };
 
   const handlePinNote = async (note) => {
     const res = await updateNote(note._id, { ...note, pinned: !pinned });
-    console.log(res);
     if (res.status === 201) {
       notesDispatch({ type: "UPDATE_NOTES", payload: res.data.notes });
       filterDispatch({ type: "PINNED" });

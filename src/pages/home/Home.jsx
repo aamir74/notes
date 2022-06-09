@@ -22,7 +22,6 @@ const Home = () => {
   let filterNotes = sortFilter(notes, filterState.sortBy);
   filterNotes = searchFilter(filterNotes, filterState.search);
   filterNotes = pinFilter(filterNotes);
-  console.log("fss", filterState);
   return (
     <div className="home-content">
       <Navbar />

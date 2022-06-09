@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useNotes } from "../../../hooks";
+import { useNotifications } from "reapop";
+import { useAuth, useNotes } from "../../../hooks";
 import { addNote, updateNote } from "../../../services";
 import { modules } from "./quill-modules";
 
 const Editor = ({ formData, setFormData, initialFormData }) => {
+  const { notify } = useNotifications();
   const { notesState, notesDispatch } = useNotes();
-  let res;
+  const { authState, authDispatch } = useAuth();
+  const token = authState.auth;
+
   const handleSubmit = async (e) => {
     try {
+      if (!token) throw { message: "User not loggeg in" };
+      let res;
       const date = new Date().toLocaleString();
       let title = formData.title;
       title = title ? title : "My Note";
@@ -17,19 +23,47 @@ const Editor = ({ formData, setFormData, initialFormData }) => {
       const note = { ...formData, date, title, pinned: false };
       if (formData.type === "edit") {
         res = await updateNote(formData.id, note);
-        if (res.status === 201)
+        if (res.status === 201) {
           notesDispatch({ type: "UPDATE_NOTES", payload: res.data.notes });
+          notify({
+            title: <h3> Success :)</h3>,
+            message: <h5>Note Updated</h5>,
+            status: "success",
+            dismissible: true,
+            dismissAfter: 5000,
+            showDismissButton: true,
+            position: "bottom-left",
+          });
+        }
       } else {
         res = await addNote(note);
-        if (res.status === 201)
+        if (res.status === 201) {
           notesDispatch({ type: "ADD_NOTES", payload: res.data.notes });
+          notify({
+            title: <h3> Success :)</h3>,
+            message: <h5>Note Addeed</h5>,
+            status: "success",
+            dismissible: true,
+            dismissAfter: 5000,
+            showDismissButton: true,
+            position: "bottom-left",
+          });
+        }
       }
       if (res.status === 201) setFormData(initialFormData);
     } catch (err) {
       console.log(err);
+      notify({
+        title: <h3>Error Occured</h3>,
+        message: <h5>Please Login to add Notes</h5>,
+        status: "error",
+        dismissible: true,
+        dismissAfter: 5000,
+        showDismissButton: true,
+        position: "bottom-left",
+      });
     }
   };
-  console.log("notes", notesState);
   return (
     <div className="editor">
       <div className="nav-search">

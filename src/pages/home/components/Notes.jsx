@@ -3,11 +3,7 @@ import { NotesCard } from "../../../customComponents/Card/NotesCard";
 import { useFilter, useNotes } from "../../../hooks";
 
 const Notes = ({ formData, setFormData,notes }) => {
-  const a = (
-    <h2>
-      <u>Solve Bugs</u>
-    </h2>
-  );
+
   const { filterState, filterDispatch } = useFilter();
   return (
     <div className="notes">
