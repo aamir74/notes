@@ -94,22 +94,22 @@ const Editor = ({ formData, setFormData, initialFormData }) => {
       <div className="color">
         Choose Color
         <span
-          class="letter-avatar"
+          className="letter-avatar"
           style={{ backgroundColor: "#d5f1de" }}
           onClick={() => setFormData((prev) => ({ ...prev, color: "#d5f1de" }))}
         ></span>
         <span
-          class="letter-avatar"
+          className="letter-avatar"
           style={{ backgroundColor: "#fadddd" }}
           onClick={() => setFormData((prev) => ({ ...prev, color: "#fadddd" }))}
         ></span>
         <span
-          class="letter-avatar"
+          className="letter-avatar"
           style={{ backgroundColor: "#fde8b9" }}
           onClick={() => setFormData((prev) => ({ ...prev, color: "#fde8b9" }))}
         ></span>
         <span
-          class="letter-avatar"
+          className="letter-avatar"
           style={{ backgroundColor: "#d6ebff" }}
           onClick={() => setFormData((prev) => ({ ...prev, color: "#d6ebff" }))}
         ></span>
@@ -117,7 +117,7 @@ const Editor = ({ formData, setFormData, initialFormData }) => {
       <br />
       <div className="color">
         <button
-          class="btn-text btn-primary btn-bg-color"
+          className="btn-text btn-primary btn-bg-color"
           onClick={handleSubmit}
         >
           {formData.type === "edit" ? "Update" : "Add"}

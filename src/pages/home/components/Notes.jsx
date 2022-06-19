@@ -12,13 +12,13 @@ const Notes = ({ formData, setFormData,notes }) => {
         <span className="note-head">
           <p className="h6 bold">Sort By Date</p>
           <button
-            class="btn-text fab-bg-color"
+            className="btn-text fab-bg-color"
             onClick={() => filterDispatch({ type: "ASC" })}
           >
             Asc
           </button>
           <button
-            class="btn-text fab-bg-color"
+            className="btn-text fab-bg-color"
             onClick={() => filterDispatch({ type: "DESC" })}
           >
             Desc

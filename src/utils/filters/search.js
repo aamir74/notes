@@ -1,9 +1,7 @@
 const searchFilter = (data, searchInput) => {
   if (searchInput) {
     const searchedData = data.filter((item) =>
-      [...item.title.toLowerCase().split(" ")].includes(
-        searchInput.toLowerCase()
-      )
+      item.title.toLowerCase().includes(searchInput.toLowerCase())
     );
     return searchedData;
   }

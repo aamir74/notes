@@ -143,11 +143,11 @@ const NotesCard = ({
   };
 
   return (
-    <div class="card text-card" style={{ backgroundColor: color }}>
+    <div className="card text-card" style={{ backgroundColor: color }}>
       <div className="notes-title">
         <p className="h7 bold">{title}</p>
         <i
-          class="fa fa-thumb-tack fa-md"
+          className="fa fa-thumb-tack fa-md"
           aria-hidden="true"
           style={pinned ? { color: "#4caf50" } : { color: "#353b47" }}
           onClick={() => handlePinNote(note)}
@@ -163,7 +163,7 @@ const NotesCard = ({
             {type !== "archive" && (
               <>
                 <i
-                  class="fa fa-edit fa-lg"
+                  className="fa fa-edit fa-lg"
                   aria-hidden="true"
                   onClick={() =>
                     setFormData({
@@ -177,7 +177,7 @@ const NotesCard = ({
                   }
                 ></i>
                 <i
-                  class="fa fa-archive fa-lg"
+                  className="fa fa-archive fa-lg"
                   aria-hidden="true"
                   onClick={() => handleAddToArchive(note)}
                 ></i>
@@ -187,13 +187,13 @@ const NotesCard = ({
               <>
                 <i
                   title="restore"
-                  class="fa fa-arrow-left fa-lg"
+                  className="fa fa-arrow-left fa-lg"
                   aria-hidden="true"
                   onClick={() => handleRemoveFromArchive(note)}
                 ></i>
 
                 <i
-                  class="fa fa-trash fa-lg"
+                  className="fa fa-trash fa-lg"
                   aria-hidden="true"
                   onClick={() => handleMoveToTrash(note)}
                 ></i>
