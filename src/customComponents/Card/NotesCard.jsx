@@ -147,6 +147,7 @@ const NotesCard = ({
       <div className="notes-title">
         <p className="h7 bold">{title}</p>
         <i
+          title="pin"
           className="fa fa-thumb-tack fa-md"
           aria-hidden="true"
           style={pinned ? { color: "#4caf50" } : { color: "#353b47" }}
@@ -163,6 +164,7 @@ const NotesCard = ({
             {type !== "archive" && (
               <>
                 <i
+                  title="edit"
                   className="fa fa-edit fa-lg"
                   aria-hidden="true"
                   onClick={() =>
@@ -177,6 +179,7 @@ const NotesCard = ({
                   }
                 ></i>
                 <i
+                  title="archive"
                   className="fa fa-archive fa-lg"
                   aria-hidden="true"
                   onClick={() => handleAddToArchive(note)}
@@ -193,6 +196,7 @@ const NotesCard = ({
                 ></i>
 
                 <i
+                  title="trash"
                   className="fa fa-trash fa-lg"
                   aria-hidden="true"
                   onClick={() => handleMoveToTrash(note)}

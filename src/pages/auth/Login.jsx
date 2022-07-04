@@ -128,6 +128,22 @@ const Login = () => {
                     Login
                   </button>
                 </div>
+                <br />{" "}
+                <div>
+                  <button
+                    className="btn-text btn-primary btn-bg-color"
+                    type="submit"
+                    onClick={() =>
+                      setFormData({
+                        ...formData,
+                        email: "aamir@gmail.com",
+                        password: "123456",
+                      })
+                    }
+                  >
+                    Guest Login
+                  </button>
+                </div>
                 <br />
                 <p>
                   Not Registered? <Link to="/signup">Sign up</Link>

@@ -23,20 +23,32 @@ const Home = () => {
   filterNotes = searchFilter(filterNotes, filterState.search);
   filterNotes = pinFilter(filterNotes);
   return (
-    <div className="home-content">
-      <Navbar />
-      <Sidebar />
-      <Notes
-        formData={formData}
-        setFormData={setFormData}
-        notes={filterNotes}
-      />
-      <Editor
-        formData={formData}
-        setFormData={setFormData}
-        initialFormData={initialFormData}
-      />
-    </div>
+    <>
+      <Navbar searchBar={true} />
+      <div className="home-content">
+        <Sidebar />
+        <Notes
+          formData={formData}
+          setFormData={setFormData}
+          notes={filterNotes}
+        />
+        <div className="desktop-editor">
+          <Editor
+            formData={formData}
+            setFormData={setFormData}
+            initialFormData={initialFormData}
+          />
+        </div>
+      </div>
+      <br />
+      <div className="mobile-editor">
+        <Editor
+          formData={formData}
+          setFormData={setFormData}
+          initialFormData={initialFormData}
+        />
+      </div>
+    </>
   );
 };
 

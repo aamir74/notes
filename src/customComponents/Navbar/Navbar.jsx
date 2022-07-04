@@ -7,7 +7,7 @@ import { useAuth, useFilter } from "../../hooks";
 import CookieHelper from "../../utils/cookies/cookieHelper";
 
 import "./Navbar.css";
-const Navbar = () => {
+const Navbar = ({ searchBar }) => {
   const { notify } = useNotifications();
   const navigate = useNavigate();
   const { fiiterState, filterDispatch } = useFilter();
@@ -38,17 +38,19 @@ const Navbar = () => {
           <h2>Scribble</h2>
         </div>
       </Link>
-      <div className="nav-search">
-        <input
-          id="searchbar"
-          className="textbox"
-          type="email"
-          placeholder="Search By Title"
-          onChange={(e) =>
-            filterDispatch({ type: "SEARCH", search: e.target.value })
-          }
-        />
-      </div>
+      {searchBar && (
+        <div className="nav-search">
+          <input
+            id="searchbar"
+            className="textbox"
+            type="email"
+            placeholder="Search By Title"
+            onChange={(e) =>
+              filterDispatch({ type: "SEARCH", search: e.target.value })
+            }
+          />
+        </div>
+      )}
       <div className="nav-icons">
         {token ? (
           <button onClick={handleLogout} className="btn-text  btn-color">

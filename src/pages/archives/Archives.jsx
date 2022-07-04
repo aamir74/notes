@@ -1,5 +1,6 @@
 import React from "react";
 import { NotesCard } from "../../customComponents/Card/NotesCard";
+import { Navbar } from "../../customComponents/Navbar/Navbar";
 import { useNotes } from "../../hooks";
 import { Sidebar } from "../home/components/Sidebar";
 
@@ -9,6 +10,7 @@ const Archives = () => {
   const { archives } = notesState;
   return (
     <>
+    <Navbar searchBar={false}/>
       <div className="archives-content">
         <Sidebar />
         <div className="archives">

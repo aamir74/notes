@@ -37,6 +37,7 @@
   width: 100%;
   background-color: white;
   color: var(--secondary-color);
+  font-size: smaller;
 }
 
 .editor {
@@ -45,7 +46,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   margin: 1rem;
-  width: 100%;
+  /* width: 100%; */
   background-color: white;
   padding: 1rem;
 }
@@ -103,8 +104,28 @@ i {
 .note-head > * {
   margin: 0 10px;
 }
+.mobile-editor {
+  display: none;
+}
+.desktop-editor {
+  display: block;
+}
+
 @media only screen and (max-width: 950px) {
   .notes {
     margin: 1rem 1rem 1rem 120px;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .mobile-editor {
+    display: block;
+    margin: 1px;
+    width: 90%;
+    overflow: hidden;
+    margin-left: 10%;
+  }
+  .desktop-editor {
+    display: none;
   }
 }
